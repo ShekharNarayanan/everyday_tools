@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# Check for the right command
+#!/bin/bash
+
+if [[ $# -eq 0 ]]; then
+    echo "Usage: tools --remove_notebook_output <notebook_name_without_extension>"
+    echo "Clears outputs from the specified Jupyter notebook."
+    echo "Example: tools --remove_notebook_output example_notebook"
+    exit 1
+fi
+
+if [ "$#" -lt 2 ]; then
+    echo "Usage: tools --remove_notebook_output <notebook_name_without_extension>"
+    exit 1
+fi
+
+# Check if the command is `--remove_notebook_output`
+if [ "$1" == "--remove_notebook_output" ]; then
+    # Pass the notebook filename to the remove_output.sh script
+    shift  # Remove the first argument
+    ~/bin/remove_notebook_output.sh "$1"  # Call the remove_output.sh script with the notebook name
+else
+    echo "Unknown command: $1"
+    echo "Usage: tools --remove_notebook_output <notebook_name_without_extension>"
+    exit 1
+fi
